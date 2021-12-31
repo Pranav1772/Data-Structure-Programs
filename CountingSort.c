@@ -52,7 +52,7 @@ void AscendingOrder(int arr[], int len) //FUNCTION DEFINATIONS
 {                                       //FUNCTION FOR SORT ARRAY IN ASCENING ORDER USING COUNTING SORT METHOD
 
     int count[3] = {0, 0, 0}, i, output[20];
-    for (i = 0; i < len; i++)
+    for (i = 0; i < len; i++) //COUNT THE NUMBER OF OCCURENCE OF NUMBERS IN ARRAY
         switch (arr[i])
         {
         case 0:
@@ -66,17 +66,18 @@ void AscendingOrder(int arr[], int len) //FUNCTION DEFINATIONS
             break;
         }
 
-    for (i = 0; i < len; i++)
+    for (i = 1; i < len; i++) //
     {
-        count[i] = count[i] + count[i - 1];
+        count[i] += count[i - 1];
     }
-    for (i = len - 1; i >= 0; i--)
+
+    for (i = len - 1; i >= 0; i--) //PLACING THE NUMBERS IN SORTED MANNER
     {
         output[count[arr[i]] - 1] = arr[i];
         count[arr[i]]--;
     }
 
-    printf("\nSorted array in Descending Order: ");
+    printf("\nSorted array in Ascending Order: ");
     for (i = 0; i < len; i++)
     {
         printf("%d ", output[i]);
@@ -85,6 +86,37 @@ void AscendingOrder(int arr[], int len) //FUNCTION DEFINATIONS
 
 void DescendingOrder(int arr[], int len) //FUNCTION FOR SORT ARRAY IN DESCENING ORDER USING COUNTING SORT METHOD
 {
+    int count[3] = {0, 0, 0}, i, output[20];
+    for (i = 0; i < len; i++) //COUNT THE NUMBER OF OCCURENCE OF NUMBERS IN ARRAY
+        switch (arr[i])
+        {
+        case 0:
+            count[0]++;
+            break;
+        case 1:
+            count[1]++;
+            break;
+        case 2:
+            count[2]++;
+            break;
+        }
+
+    for (i = 1; i < len; i++) //
+    {
+        count[i] += count[i - 1];
+    }
+
+    for (i = len - 1; i >= 0; i--) //PLACING THE NUMBERS IN SORTED MANNER
+    {
+        output[count[arr[i]] - 1] = arr[i];
+        count[arr[i]]--;
+    }
+
+    printf("\nSorted array in Ascending Order: ");
+    for (i = 0; i < len; i++)
+    {
+        printf("%d ", output[i]);
+    }
 
     printf("\nSorted array in Descending Order: ");
     for (int i = 0; i < len; i++)
